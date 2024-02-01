@@ -17,6 +17,27 @@ public class GoogleSheetsMenu : ScriptableObject
     [MenuItem(MenuRoot + "/GenerateGameDataSheets", false, 11)]
     public static void GenerateGameDataSheets()
     {
+        GenerateGameDataAsync().Forget();
+        
+        async UniTask GenerateGameDataAsync()
+        {
+            try
+            {
+                AssetDatabase.StartAssetEditing();
+                
+                await CodeGenerator.Generate();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e);
+                throw;
+            }
+            finally
+            {
+                AssetDatabase.StopAssetEditing();
+                AssetDatabase.Refresh();
+            }
+        }
     }
 }
 #endif
