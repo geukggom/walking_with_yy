@@ -2,11 +2,10 @@ using System.Collections.Generic;
 using Generated;
 using System;
 using Cysharp.Threading.Tasks;
-using UnityEditor;
 
-public partial class GameDataManager
+public partial class GameDataManager : Singleton<GameDataManager>
 {
-    private void LoadGameData()
+    public void LoadGameData()
     {
         LoadFlowManagementData().Forget();
         LoadChatData().Forget();

@@ -107,7 +107,7 @@ public static class DataCodeGenerator
         sb.AppendLine("using Cysharp.Threading.Tasks;");
         sb.AppendLine("using UnityEditor;");
         sb.AppendLine();
-        sb.AppendLine("public partial class GameDataManager");
+        sb.AppendLine("public partial class GameDataManager : Singleton<GameDataManager>");
         sb.AppendLine("{");
         sb.AppendIndentedLine("private void LoadGameData()", 1);
         sb.AppendIndentedLine("{", 1);
