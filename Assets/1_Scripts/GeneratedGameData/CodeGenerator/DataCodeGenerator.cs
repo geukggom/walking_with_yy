@@ -109,11 +109,11 @@ public static class DataCodeGenerator
         sb.AppendLine();
         sb.AppendLine("public partial class GameDataManager : Singleton<GameDataManager>");
         sb.AppendLine("{");
-        sb.AppendIndentedLine("private void LoadGameData()", 1);
+        sb.AppendIndentedLine("private async UniTask LoadGameData()", 1);
         sb.AppendIndentedLine("{", 1);
         foreach (var loadedData in loadedDataList)
         {
-            sb.AppendIndentedLine($"Load{loadedData.SheetName}().Forget();", 2);
+            sb.AppendIndentedLine($"await Load{loadedData.SheetName}();", 2);
         }
 
         sb.AppendIndentedLine("}", 1);

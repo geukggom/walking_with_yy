@@ -5,11 +5,11 @@ using Cysharp.Threading.Tasks;
 
 public partial class GameDataManager : Singleton<GameDataManager>
 {
-    public void LoadGameData()
+    public async UniTask LoadGameData()
     {
-        LoadFlowManagementData().Forget();
-        LoadChatData().Forget();
-        LoadChatProfileData().Forget();
+        await LoadFlowManagementData();
+        await LoadChatData();
+        await LoadChatProfileData();
     }
 
     public List<FlowManagementData> FlowManagementDataList { get; private set; }
