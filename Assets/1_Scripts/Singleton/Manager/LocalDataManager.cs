@@ -4,25 +4,24 @@ using System.Text;
 using JetBrains.Annotations;
 using UnityEngine;
 
+public enum LocalDataType
+{
+    SaveFlow,
+}
+
 public class LocalDataManager : Singleton<LocalDataManager>
 {
-    public const string SaveFlow = "SaveFlow";
     private const string PassW = "4100000000019148";
 
-    public bool HasPlayerPrefs(string key)
+    public void SaveIntPlayerPrefs(LocalDataType key, int value)
     {
-        return PlayerPrefs.HasKey(key);
-    }
-
-    public void SaveIntPlayerPrefs(string key, int value)
-    {
-        Save(key, value.ToString());
+        Save(key.ToString(), value.ToString());
     }
 
     [CanBeNull]
-    public int? GetIntPlayerPrefs(string key)
+    public int? GetIntPlayerPrefs(LocalDataType key)
     {
-        var value = GetValue(key);
+        var value = GetValue(key.ToString());
         if (string.IsNullOrEmpty(value)) return null;
 
         return int.Parse(value);
@@ -35,7 +34,7 @@ public class LocalDataManager : Singleton<LocalDataManager>
 
     private static string GetValue(string key)
     {
-        return PlayerPrefs.HasKey(key) ? PlayerPrefs.GetString(key) : string.Empty;
+        return PlayerPrefs.HasKey(key) ? DecryptStringData(PlayerPrefs.GetString(key)) : string.Empty;
     }
 
     private static string EncryptStringData(string inputText) //암호화
