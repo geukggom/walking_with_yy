@@ -1,17 +1,9 @@
-using Cysharp.Threading.Tasks;
-using UnityEngine;
-
-public class TitleSceneManager : MonoBehaviour
+public class TitleSceneManager : MonoBehaviourSingleton<TitleSceneManager>
 {
-
+    private const int _playSceneNumber = 1;
+    
     public void OnStartButtonClick()
     {
-        //로딩화면 띄우기
-        StartGameAsync().Forget();
-
-        async UniTask StartGameAsync()
-        {
-            await GameDataManager.Instance.LoadGameData();
-        }
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(_playSceneNumber);
     }
 }
