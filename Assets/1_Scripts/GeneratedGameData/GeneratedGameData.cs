@@ -5,14 +5,14 @@ namespace Generated
         public FlowType FlowType { get; private set; }
         public int FlowOrder { get; private set; }
         public string PlayingBgm { get; private set; }
-        public string Title { get; private set; }
+        public string TitleResourceKey { get; private set; }
 
-        public FlowManagementData(FlowType flowType, int flowOrder, string playingBgm, string title)
+        public FlowManagementData(FlowType flowType, int flowOrder, string playingBgm, string titleResourceKey)
         {
             FlowType = flowType;
             FlowOrder = flowOrder;
             PlayingBgm = playingBgm;
-            Title = title;
+            TitleResourceKey = titleResourceKey;
         }
     }
     public class ChatData
